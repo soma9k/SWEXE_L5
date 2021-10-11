@@ -1,7 +1,6 @@
 <% @user.each do |e| %>
     <p> 
         <%= e.uid %><br>
-        <%= e.age %><br>
         <%= link_to '削除', "/users/#{e.id}", method: :delete %> 
     </p> 
 <% end %>
