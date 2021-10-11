@@ -1,0 +1,7 @@
+<% @tweet.each do |e| %>
+    <p> 
+        <%= e.message %><br>
+        <%= link_to '削除', "/tweets/#{e.id}", method: :delete %> 
+    </p> 
+<% end %>
+ <%= link_to "登録する", '/tweets/new' %>
