@@ -1,2 +1,20 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<% if @user.errors.present? %>
+    <span style="color:red;">
+        <h3>エラーがあります。</h3>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+        </ul>
+    </span>
+<% end %>
+
+<%= form_for @user, url: {action: :create} do |f| %>
+    <p><%= f.label :uid, 'ユーザー名' %>
+    <%= f.text_field :uid %></p>
+    <p><%= f.label :pass, 'パスワード' %>
+    <%= f.text_field :pass %></p>
+    <p><%= f.label :age, '年齢' %>
+    <%= f.text_field :age %></p>
+    <%= f.submit '登録' %>
+<% end %>
