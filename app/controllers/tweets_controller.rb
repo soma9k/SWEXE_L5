@@ -8,10 +8,10 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(message: params[:tweet][:message])
+    @tweet = Tweet.new(message: params[:tweet][:message], user_id: session[:login_uid])
     if @tweet.save
       flash[:notice] = '1レコード追加しました'
-      redirect_to tweets_path
+      redirect_to root_path
     else
       render 'new'
     end
@@ -22,6 +22,6 @@ class TweetsController < ApplicationController
     if tweet.destroy
       flash[:notice] = '1レコード削除しました'
     end
-    redirect_to tweets_path
+    redirect_to root_path
   end
 end

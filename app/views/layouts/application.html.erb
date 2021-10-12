@@ -4,15 +4,17 @@
     <title>L5</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= link_to "ユーザ登録する", '/users/new' %>
-    <%= link_to "ツイートする", '/tweets/new' %>
-    <%= link_to " ログインする", 'top/main' %>
     <%= yield %>
+    <% if !session[:login_uid] %>
+      <br><strong>ログインしていません</strong>
+    <% else %>
+      <br><strong><%= session[:login_uid] %>さんでログインしています</strong>
+    <% end %>
   </body>
 </html>

@@ -1,19 +1,16 @@
 class TopController < ApplicationController
   def main
-    if session[:login_uid]
-        render 'main'
-    else
-        render 'login'
-    end
+    @tweet = Tweet.all
   end
     
   def login
+    @tweet = Tweet.all
     user = User.find_by(uid: params[:uid])
     if user and BCrypt::Password.new(user.pass) == params[:pass]
        session[:login_uid] = params[:uid]
-       render 'main'
+       render 'top/main'
     else
-      render 'login_failed'
+      render 'login'
     end
   end
   

@@ -1,2 +1,21 @@
-<br>ログイン成功！
-<%= link_to 'ログアウト', top_logout_path %>
+<% if !session[:login_uid] %>
+    <%= link_to "ログイン", '/top/login', method: :post %><br>
+<% end %>
+<% @tweet.each do |e| %>
+    <p> 
+        <%= e.message %><br>
+        <% if session[:login_uid] %>
+            <%= link_to 'いいね', likes_path(tweet_id: e.id), method: :post %>
+            <%= link_to 'いいね削除', like_path(e), method: :delete %>
+            <% if e.likes.find_by(user_id: User.find_by(uid: session[:login_uid]).id) %>
+                <i class="fas fa-heart"></i><%= e.likes.count %>
+            <% else %>
+                <i class="far fa-heart"></i><%= e.likes.count %>
+            <% end %>
+        <% end %>
+    </p> 
+<% end %>
+<% if session[:login_uid] %>
+    <%= link_to "ツイートする", '/tweets/new' %>
+    <%= link_to 'ログアウト', top_logout_path %>
+<% end %>
