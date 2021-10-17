@@ -1,7 +1,11 @@
 <% @user.each do |e| %>
     <p> 
-        <%= e.uid %><br>
-        <%= e.pass %><br>
+        ユーザー名：<%= e.uid %><br>
+        パスワード：<%= e.pass %><br>
+        プロフィール：<%= e.profile %><br>
+        <% if e.uid == session[:login_uid] %>
+            <%= link_to '編集', "/users/#{e.id}/edit" %>
+        <% end %>
         <%= link_to '削除', "/users/#{e.id}", method: :delete %> 
     </p> 
 <% end %>
