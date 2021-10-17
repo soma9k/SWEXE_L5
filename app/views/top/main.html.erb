@@ -16,6 +16,7 @@
                     <i class="fas fa-heart"></i>
                 <% end %>
             <% end %>
+            <%= link_to '削除', "/tweets/#{e.id}", method: :delete %>
         <% end %>
     </p> 
 <% end %>
